@@ -103,14 +103,14 @@ class BinarySearchTree {
 
   levelOrder(callback = (data) => data, node = this._head) {
     let array = [];
-    for (depth = 0; depth < node.height; depth++)
+    for (let depth = 0; depth <= node.height; depth++)
       array = [...array, ...this.#bft(callback, node, depth)];
     return array;
   }
 
   #bft(callback, node, depth) {
     if (node === null) return [];
-    if (node.depth === depth) return callback(node.data);
+    if (node.depth === depth) return [callback(node.data)];
     return [
       ...this.#bft(callback, node.left, depth),
       ...this.#bft(callback, node.right, depth),
